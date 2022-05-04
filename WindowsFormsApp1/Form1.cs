@@ -13,6 +13,7 @@ namespace WindowsFormsApp1
 {
     public partial class Form1 : Form
     {
+        private string currentDirectory = "";
         public Form1()
         {
             InitializeComponent();
@@ -35,30 +36,57 @@ namespace WindowsFormsApp1
 
         private void leftTree_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            TreeNode node = e.Node;
-            leftTree.Nodes.Clear();
-            foreach (string directory in Directory.GetDirectories(node.Text))
+            try
             {
-                leftTree.Nodes.Add(new TreeNode(directory));
+                if (Directory.Exists(e.Node.Text))
+                {
+                    string[] s = e.Node.Text.Split('\\');
+                    currentDirectory += s[s.Length-1];
+                    textBoxPath.Text = currentDirectory;
+                    leftTree.Nodes.Clear();
+                    foreach (string directory in Directory.GetDirectories(e.Node.Text))
+                    {
+                        leftTree.Nodes.Add(new TreeNode(directory));
+                    }
+                    foreach (string item in Directory.GetFiles(e.Node.Text))
+                    {
+                        leftTree.Nodes.Add(new TreeNode(item));
+                    }
+                }               
+
             }
-            foreach (string item in Directory.GetFiles(node.Text))
+            catch (Exception ex)
             {
-                leftTree.Nodes.Add(new TreeNode(item));
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK);
             }
         }
 
         private void rightTree_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            TreeNode node = e.Node;
-            rightTree.Nodes.Clear();
-            foreach (string directory in Directory.GetDirectories(node.Text))
+            try
             {
-                rightTree.Nodes.Add(new TreeNode(directory));
+                if (Directory.Exists(e.Node.Text))
+                {
+                    currentDirectory += e.Node.Text;
+                    textBoxPath.Text = currentDirectory;
+                    rightTree.Nodes.Clear();
+                    foreach (string directory in Directory.GetDirectories(e.Node.Text))
+                    {
+                        rightTree.Nodes.Add(new TreeNode(directory));
+                    }
+                    foreach (string item in Directory.GetFiles(e.Node.Text))
+                    {
+                        rightTree.Nodes.Add(new TreeNode(item));
+                    }
+                }
+                
             }
-            foreach (string item in Directory.GetFiles(node.Text))
+            catch (Exception ex)
             {
-                rightTree.Nodes.Add(new TreeNode(item));
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK);
             }
         }
+
+        
     }
 }

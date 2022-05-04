@@ -33,7 +33,7 @@ namespace WindowsFormsApp1
             this.leftTree = new System.Windows.Forms.TreeView();
             this.rightTree = new System.Windows.Forms.TreeView();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.textBoxPath = new System.Windows.Forms.TextBox();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
@@ -41,6 +41,7 @@ namespace WindowsFormsApp1
             this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -52,7 +53,7 @@ namespace WindowsFormsApp1
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(3, 33);
+            this.splitContainer1.Location = new System.Drawing.Point(3, 57);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -62,8 +63,8 @@ namespace WindowsFormsApp1
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.rightTree);
-            this.splitContainer1.Size = new System.Drawing.Size(794, 414);
-            this.splitContainer1.SplitterDistance = 318;
+            this.splitContainer1.Size = new System.Drawing.Size(794, 427);
+            this.splitContainer1.SplitterDistance = 316;
             this.splitContainer1.TabIndex = 0;
             // 
             // leftTree
@@ -71,7 +72,7 @@ namespace WindowsFormsApp1
             this.leftTree.Dock = System.Windows.Forms.DockStyle.Fill;
             this.leftTree.Location = new System.Drawing.Point(0, 0);
             this.leftTree.Name = "leftTree";
-            this.leftTree.Size = new System.Drawing.Size(318, 414);
+            this.leftTree.Size = new System.Drawing.Size(316, 427);
             this.leftTree.TabIndex = 0;
             this.leftTree.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.leftTree_NodeMouseDoubleClick);
             // 
@@ -80,7 +81,7 @@ namespace WindowsFormsApp1
             this.rightTree.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rightTree.Location = new System.Drawing.Point(0, 0);
             this.rightTree.Name = "rightTree";
-            this.rightTree.Size = new System.Drawing.Size(472, 414);
+            this.rightTree.Size = new System.Drawing.Size(474, 427);
             this.rightTree.TabIndex = 0;
             this.rightTree.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.rightTree_NodeMouseDoubleClick);
             // 
@@ -89,31 +90,25 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Controls.Add(this.toolStrip1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.splitContainer1, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.textBoxPath, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.splitContainer1, 0, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 420F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 450);
+            this.tableLayoutPanel1.RowCount = 3;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 281F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 487);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
-            // toolStrip1
+            // textBoxPath
             // 
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton1,
-            this.toolStripButton2,
-            this.toolStripButton3,
-            this.toolStripButton4,
-            this.toolStripButton5,
-            this.toolStripButton6,
-            this.toolStripButton7});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(800, 25);
-            this.toolStrip1.TabIndex = 2;
-            this.toolStrip1.Text = "toolStrip1";
+            this.textBoxPath.Dock = System.Windows.Forms.DockStyle.Top;
+            this.textBoxPath.Location = new System.Drawing.Point(3, 30);
+            this.textBoxPath.Name = "textBoxPath";
+            this.textBoxPath.Size = new System.Drawing.Size(794, 20);
+            this.textBoxPath.TabIndex = 3;
             // 
             // toolStripButton1
             // 
@@ -178,11 +173,27 @@ namespace WindowsFormsApp1
             this.toolStripButton7.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton7.Text = "ForwardButton";
             // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButton1,
+            this.toolStripButton2,
+            this.toolStripButton3,
+            this.toolStripButton4,
+            this.toolStripButton5,
+            this.toolStripButton6,
+            this.toolStripButton7});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(800, 25);
+            this.toolStrip1.TabIndex = 2;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 487);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -205,6 +216,7 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.TreeView leftTree;
         private System.Windows.Forms.TreeView rightTree;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TextBox textBoxPath;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ToolStripButton toolStripButton2;
