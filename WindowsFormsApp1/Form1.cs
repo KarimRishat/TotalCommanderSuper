@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Diagnostics;
 
 namespace WindowsFormsApp1
 {
@@ -62,7 +63,14 @@ namespace WindowsFormsApp1
                         DirectoryInfo directoryTmp = new DirectoryInfo(item);
                         leftTree.Nodes.Add(new TreeNode(directoryTmp.Name));
                     }
-                }               
+                }
+                else
+                {
+                    if (File.Exists(String.Concat(currentDirectoryLeft,e.Node.Text)))
+                    {
+                        Process.Start(String.Concat(currentDirectoryLeft, e.Node.Text));
+                    }
+                }
 
             }
             catch (Exception ex)
