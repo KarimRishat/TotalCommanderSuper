@@ -13,7 +13,8 @@ namespace WindowsFormsApp1
 {
     public partial class Form1 : Form
     {
-        private string currentDirectory = "";
+        private string currentDirectoryLeft;
+        private string currentDirectoryRight;
         public Form1()
         {
             InitializeComponent();
@@ -38,19 +39,28 @@ namespace WindowsFormsApp1
         {
             try
             {
-                if (Directory.Exists(e.Node.Text))
+                if (Directory.Exists(String.Concat(currentDirectoryLeft,e.Node.Text)))
                 {
-                    string[] s = e.Node.Text.Split('\\');
-                    currentDirectory += s[s.Length-1];
-                    textBoxPath.Text = currentDirectory;
-                    leftTree.Nodes.Clear();
-                    foreach (string directory in Directory.GetDirectories(e.Node.Text))
+                    if (String.IsNullOrEmpty(currentDirectoryLeft))
                     {
-                        leftTree.Nodes.Add(new TreeNode(directory));
+                        currentDirectoryLeft = e.Node.Text;
                     }
-                    foreach (string item in Directory.GetFiles(e.Node.Text))
+                    else
                     {
-                        leftTree.Nodes.Add(new TreeNode(item));
+                        currentDirectoryLeft = currentDirectoryLeft + e.Node.Text+"\\";
+                    }                    
+                    textBoxPath1.Text = currentDirectoryLeft;
+                    leftTree.Nodes.Clear();
+                    
+                    foreach (string directory in Directory.GetDirectories(currentDirectoryLeft))
+                    {
+                        DirectoryInfo directoryTmp = new DirectoryInfo(directory);
+                        leftTree.Nodes.Add(new TreeNode(directoryTmp.Name));
+                    }
+                    foreach (string item in Directory.GetFiles(currentDirectoryLeft))
+                    {
+                        DirectoryInfo directoryTmp = new DirectoryInfo(item);
+                        leftTree.Nodes.Add(new TreeNode(directoryTmp.Name));
                     }
                 }               
 
@@ -65,21 +75,31 @@ namespace WindowsFormsApp1
         {
             try
             {
-                if (Directory.Exists(e.Node.Text))
+                if (Directory.Exists(String.Concat(currentDirectoryRight, e.Node.Text)))
                 {
-                    currentDirectory += e.Node.Text;
-                    textBoxPath.Text = currentDirectory;
-                    rightTree.Nodes.Clear();
-                    foreach (string directory in Directory.GetDirectories(e.Node.Text))
+                    if (String.IsNullOrEmpty(currentDirectoryRight))
                     {
-                        rightTree.Nodes.Add(new TreeNode(directory));
+                        currentDirectoryRight = e.Node.Text;
                     }
-                    foreach (string item in Directory.GetFiles(e.Node.Text))
+                    else
                     {
-                        rightTree.Nodes.Add(new TreeNode(item));
+                        currentDirectoryRight = currentDirectoryRight + e.Node.Text + "\\";
+                    }
+                    textBoxPath2.Text = currentDirectoryRight;
+                    rightTree.Nodes.Clear();
+
+                    foreach (string directory in Directory.GetDirectories(currentDirectoryRight))
+                    {
+                        DirectoryInfo directoryTmp = new DirectoryInfo(directory);
+                        rightTree.Nodes.Add(new TreeNode(directoryTmp.Name));
+                    }
+                    foreach (string item in Directory.GetFiles(currentDirectoryRight))
+                    {
+                        DirectoryInfo directoryTmp = new DirectoryInfo(item);
+                        rightTree.Nodes.Add(new TreeNode(directoryTmp.Name));
                     }
                 }
-                
+
             }
             catch (Exception ex)
             {
