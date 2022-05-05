@@ -16,6 +16,9 @@ namespace WindowsFormsApp1
     {
         private string currentDirectoryLeft;
         private string currentDirectoryRight;
+        public TreeView treeCurent;
+
+        private TreeNode SelectedNode;
         public Form1()
         {
             InitializeComponent();
@@ -40,6 +43,7 @@ namespace WindowsFormsApp1
         {
             try
             {
+                SelectedNode = e.Node;
                 if (Directory.Exists(String.Concat(currentDirectoryLeft,e.Node.Text)))
                 {
                     if (String.IsNullOrEmpty(currentDirectoryLeft))
@@ -83,6 +87,8 @@ namespace WindowsFormsApp1
         {
             try
             {
+                SelectedNode = e.Node;
+                leftTree_NodeMouseClick(sender, e);
                 if (Directory.Exists(String.Concat(currentDirectoryRight, e.Node.Text)))
                 {
                     if (String.IsNullOrEmpty(currentDirectoryRight))
@@ -115,6 +121,76 @@ namespace WindowsFormsApp1
             }
         }
 
-        
+        private void toolStripButtonAddFile_Click(object sender, EventArgs e)
+        {
+            string s = "";
+            TreeView tmp = new TreeView();
+            if (leftTree.Equals(SelectedNode.TreeView))
+            {
+                s = currentDirectoryLeft;
+                tmp = leftTree;
+            }
+            else
+            {
+                if (rightTree.Equals(SelectedNode.TreeView))
+                {
+                    s = currentDirectoryRight;
+                    tmp = rightTree;
+                }
+            }
+            AddFileDialog addFile = new AddFileDialog(s);
+            addFile.Tmp = tmp;
+            addFile.Show();
+        }
+
+        private void leftTree_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            SelectedNode = e.Node;
+        }
+
+        private void toolStripButtonAddDir_Click(object sender, EventArgs e)
+        {
+            string s = "";
+            TreeView tmp = new TreeView();
+            if (leftTree.Equals(SelectedNode.TreeView))
+            {
+                s = currentDirectoryLeft;
+                tmp = leftTree;
+            }
+            else
+            {
+                if (rightTree.Equals(SelectedNode.TreeView))
+                {
+                    s = currentDirectoryRight;
+                    tmp = rightTree;
+                }
+            }
+            AddCatalogDialog addDir = new AddCatalogDialog(s);
+            addDir.Tmp = tmp;
+            addDir.Show();
+        }
+
+        private void toolStripButtonRename_Click(object sender, EventArgs e)
+        {
+            string s = "";
+            TreeView tmp = new TreeView();
+            if (leftTree.Equals(SelectedNode.TreeView))
+            {
+                s = currentDirectoryLeft;
+                treeCurent = leftTree;
+            }
+            else
+            {
+                if (rightTree.Equals(SelectedNode.TreeView))
+                {
+                    s = currentDirectoryRight;
+                    treeCurent = rightTree;
+                }
+            }
+            RenameDialog rename = new RenameDialog(s);            
+            rename.TmpNode = SelectedNode;
+            rename.treeView = treeCurent;
+            rename.Show();
+        }
     }
 }

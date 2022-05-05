@@ -11,30 +11,22 @@ using System.IO;
 
 namespace WindowsFormsApp1
 {
-    public partial class AddFileDialog : Form
+    public partial class AddCatalogDialog : Form
     {
-        public AddFileDialog()
-        {
-            InitializeComponent();
-        }
         private string Path;
         public TreeView Tmp;
-        public AddFileDialog(string s)
+        public AddCatalogDialog(string s)
         {
             InitializeComponent();
             Path = s;
         }
-        private void AddFileDialog_Load(object sender, EventArgs e)
-        {
-            
-        }
 
         private void buttonAddFile_Click(object sender, EventArgs e)
         {
-            if (!File.Exists(Path))
+            if (!Directory.Exists(Path))
             {
-                File.Create(Path + "\\" + textBoxAddFile.Text);
-                Tmp.Nodes.Add(textBoxAddFile.Text);
+                Directory.CreateDirectory(Path + "\\" + textBoxAddCatalog.Text);
+                Tmp.Nodes.Add(textBoxAddCatalog.Text);
             }
             Close();
         }
@@ -43,5 +35,6 @@ namespace WindowsFormsApp1
         {
             Close();
         }
+    
     }
 }
